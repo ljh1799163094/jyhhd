@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jyhhd.mapper.SisAlarmCRITERIAMapper">
+  <resultMap id="BaseResultMap" type="com.example.jyhhd.entity.SisAlarmCRITERIA">
+    <id column="GUID" jdbcType="VARCHAR" property="guid" />
+    <result column="SIS_ALARM_ID" jdbcType="VARCHAR" property="sisAlarmId" />
+    <result column="ALARM_NAME" jdbcType="VARCHAR" property="alarmName" />
+    <result column="ALARM_VALUE" jdbcType="VARCHAR" property="alarmValue" />
+    <result column="ALARM_EXPRESSION" jdbcType="VARCHAR" property="alarmExpression" />
+    <result column="ALARM_GRADE" jdbcType="VARCHAR" property="alarmGrade" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATOR" jdbcType="VARCHAR" property="updator" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="ALARM_DESC" jdbcType="VARCHAR" property="alarmDesc" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, SIS_ALARM_ID, ALARM_NAME, ALARM_VALUE, ALARM_EXPRESSION, ALARM_GRADE, CREATE_TIME, 
+    UPDATOR, UPDATE_TIME, ALARM_DESC, CREATOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sis_alarm_criteria
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sis_alarm_criteria
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.jyhhd.entity.SisAlarmCRITERIA">
+    insert into sis_alarm_criteria (GUID, SIS_ALARM_ID, ALARM_NAME, 
+      ALARM_VALUE, ALARM_EXPRESSION, ALARM_GRADE, 
+      CREATE_TIME, UPDATOR, UPDATE_TIME, 
+      ALARM_DESC, CREATOR)
+    values (#{guid,jdbcType=VARCHAR}, #{sisAlarmId,jdbcType=VARCHAR}, #{alarmName,jdbcType=VARCHAR}, 
+      #{alarmValue,jdbcType=VARCHAR}, #{alarmExpression,jdbcType=VARCHAR}, #{alarmGrade,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updator,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{alarmDesc,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.jyhhd.entity.SisAlarmCRITERIA">
+    insert into sis_alarm_criteria
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="sisAlarmId != null">
+        SIS_ALARM_ID,
+      </if>
+      <if test="alarmName != null">
+        ALARM_NAME,
+      </if>
+      <if test="alarmValue != null">
+        ALARM_VALUE,
+      </if>
+      <if test="alarmExpression != null">
+        ALARM_EXPRESSION,
+      </if>
+      <if test="alarmGrade != null">
+        ALARM_GRADE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updator != null">
+        UPDATOR,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="alarmDesc != null">
+        ALARM_DESC,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="sisAlarmId != null">
+        #{sisAlarmId,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmName != null">
+        #{alarmName,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmValue != null">
+        #{alarmValue,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmExpression != null">
+        #{alarmExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmGrade != null">
+        #{alarmGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmDesc != null">
+        #{alarmDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.jyhhd.entity.SisAlarmCRITERIA">
+    update sis_alarm_criteria
+    <set>
+      <if test="sisAlarmId != null">
+        SIS_ALARM_ID = #{sisAlarmId,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmName != null">
+        ALARM_NAME = #{alarmName,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmValue != null">
+        ALARM_VALUE = #{alarmValue,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmExpression != null">
+        ALARM_EXPRESSION = #{alarmExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmGrade != null">
+        ALARM_GRADE = #{alarmGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        UPDATOR = #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmDesc != null">
+        ALARM_DESC = #{alarmDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.jyhhd.entity.SisAlarmCRITERIA">
+    update sis_alarm_criteria
+    set SIS_ALARM_ID = #{sisAlarmId,jdbcType=VARCHAR},
+      ALARM_NAME = #{alarmName,jdbcType=VARCHAR},
+      ALARM_VALUE = #{alarmValue,jdbcType=VARCHAR},
+      ALARM_EXPRESSION = #{alarmExpression,jdbcType=VARCHAR},
+      ALARM_GRADE = #{alarmGrade,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATOR = #{updator,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      ALARM_DESC = #{alarmDesc,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

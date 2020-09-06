@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jyhhd.mapper.SisAlarmMapper">
+  <resultMap id="BaseResultMap" type="com.example.jyhhd.entity.SisAlarm">
+    <id column="TA_TAG_NO" jdbcType="VARCHAR" property="taTagNo" />
+    <result column="TA_TAG_NAM" jdbcType="VARCHAR" property="taTagNam" />
+    <result column="TA_TAG_DSCR" jdbcType="VARCHAR" property="taTagDscr" />
+    <result column="UNIT" jdbcType="VARCHAR" property="unit" />
+    <result column="IS_ENABLE" jdbcType="VARCHAR" property="isEnable" />
+    <result column="EXPRESSION" jdbcType="VARCHAR" property="expression" />
+    <result column="SKILL_ID" jdbcType="VARCHAR" property="skillId" />
+    <result column="ORG_ID" jdbcType="VARCHAR" property="orgId" />
+    <result column="LOCA_ID" jdbcType="VARCHAR" property="locaId" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATOR" jdbcType="VARCHAR" property="updator" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CONTINUED_TIME" jdbcType="VARCHAR" property="continuedTime" />
+    <result column="SIS_TYPE" jdbcType="VARCHAR" property="sisType" />
+    <result column="IS_CHECK" jdbcType="CHAR" property="isCheck" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TA_TAG_NO, TA_TAG_NAM, TA_TAG_DSCR, UNIT, IS_ENABLE, EXPRESSION, SKILL_ID, ORG_ID, 
+    LOCA_ID, CREATOR, CREATE_TIME, UPDATOR, UPDATE_TIME, CONTINUED_TIME, SIS_TYPE, IS_CHECK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sis_alarm
+    where TA_TAG_NO = #{taTagNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sis_alarm
+    where TA_TAG_NO = #{taTagNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.jyhhd.entity.SisAlarm">
+    insert into sis_alarm (TA_TAG_NO, TA_TAG_NAM, TA_TAG_DSCR, 
+      UNIT, IS_ENABLE, EXPRESSION, 
+      SKILL_ID, ORG_ID, LOCA_ID, 
+      CREATOR, CREATE_TIME, UPDATOR, 
+      UPDATE_TIME, CONTINUED_TIME, SIS_TYPE, 
+      IS_CHECK)
+    values (#{taTagNo,jdbcType=VARCHAR}, #{taTagNam,jdbcType=VARCHAR}, #{taTagDscr,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{isEnable,jdbcType=VARCHAR}, #{expression,jdbcType=VARCHAR}, 
+      #{skillId,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, #{locaId,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updator,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{continuedTime,jdbcType=VARCHAR}, #{sisType,jdbcType=VARCHAR}, 
+      #{isCheck,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.jyhhd.entity.SisAlarm">
+    insert into sis_alarm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taTagNo != null">
+        TA_TAG_NO,
+      </if>
+      <if test="taTagNam != null">
+        TA_TAG_NAM,
+      </if>
+      <if test="taTagDscr != null">
+        TA_TAG_DSCR,
+      </if>
+      <if test="unit != null">
+        UNIT,
+      </if>
+      <if test="isEnable != null">
+        IS_ENABLE,
+      </if>
+      <if test="expression != null">
+        EXPRESSION,
+      </if>
+      <if test="skillId != null">
+        SKILL_ID,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="locaId != null">
+        LOCA_ID,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updator != null">
+        UPDATOR,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="continuedTime != null">
+        CONTINUED_TIME,
+      </if>
+      <if test="sisType != null">
+        SIS_TYPE,
+      </if>
+      <if test="isCheck != null">
+        IS_CHECK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taTagNo != null">
+        #{taTagNo,jdbcType=VARCHAR},
+      </if>
+      <if test="taTagNam != null">
+        #{taTagNam,jdbcType=VARCHAR},
+      </if>
+      <if test="taTagDscr != null">
+        #{taTagDscr,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null">
+        #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="expression != null">
+        #{expression,jdbcType=VARCHAR},
+      </if>
+      <if test="skillId != null">
+        #{skillId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="locaId != null">
+        #{locaId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="continuedTime != null">
+        #{continuedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sisType != null">
+        #{sisType,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null">
+        #{isCheck,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.jyhhd.entity.SisAlarm">
+    update sis_alarm
+    <set>
+      <if test="taTagNam != null">
+        TA_TAG_NAM = #{taTagNam,jdbcType=VARCHAR},
+      </if>
+      <if test="taTagDscr != null">
+        TA_TAG_DSCR = #{taTagDscr,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null">
+        IS_ENABLE = #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="expression != null">
+        EXPRESSION = #{expression,jdbcType=VARCHAR},
+      </if>
+      <if test="skillId != null">
+        SKILL_ID = #{skillId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="locaId != null">
+        LOCA_ID = #{locaId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        UPDATOR = #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="continuedTime != null">
+        CONTINUED_TIME = #{continuedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sisType != null">
+        SIS_TYPE = #{sisType,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null">
+        IS_CHECK = #{isCheck,jdbcType=CHAR},
+      </if>
+    </set>
+    where TA_TAG_NO = #{taTagNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.jyhhd.entity.SisAlarm">
+    update sis_alarm
+    set TA_TAG_NAM = #{taTagNam,jdbcType=VARCHAR},
+      TA_TAG_DSCR = #{taTagDscr,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      IS_ENABLE = #{isEnable,jdbcType=VARCHAR},
+      EXPRESSION = #{expression,jdbcType=VARCHAR},
+      SKILL_ID = #{skillId,jdbcType=VARCHAR},
+      ORG_ID = #{orgId,jdbcType=VARCHAR},
+      LOCA_ID = #{locaId,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATOR = #{updator,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CONTINUED_TIME = #{continuedTime,jdbcType=VARCHAR},
+      SIS_TYPE = #{sisType,jdbcType=VARCHAR},
+      IS_CHECK = #{isCheck,jdbcType=CHAR}
+    where TA_TAG_NO = #{taTagNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

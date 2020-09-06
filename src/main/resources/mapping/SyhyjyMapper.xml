@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jyhhd.mapper.SyhyjyMapper">
+
+  <insert id="insertSubstationEquipment" parameterType="java.util.List">
+    INSERT INTO substationEquipment_chromatographic (ID,ELC_NAME,VOLTAGE_KIND,CY_DATE,SY_DATE,CH4,
+    C2H6,C2H4,C2H2,ZT,H2,CO,CO2,CONCLUSION,NOTE) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.id},
+      #{item.fundName},
+      #{item.fundCode},
+      #{item.dateX},
+      #{item.dataY},
+      #{item.createBy},
+      #{item.createDate},
+      #{item.updateBy},
+      #{item.updateDate},
+      #{item.remarks},
+      #{item.delFlag}
+      )
+    </foreach>
+  </insert>
+</mapper>

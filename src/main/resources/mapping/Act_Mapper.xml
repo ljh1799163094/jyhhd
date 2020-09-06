@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jyhhd.mapper.Act_Mapper">
+
+  <!--根据总任务编号和节点名称删除任务-->
+  <delete id="deleteTaskByProcInstIdAndName" parameterType="java.lang.String">
+    DELETE FROM act_ru_task WHERE PROC_INST_ID_=#{procInstId,jdbcType=VARCHAR} AND NAME_ = #{name,jdbcType=VARCHAR}
+  </delete>
+
+  <!--根据任务编号查询总任务编号-->
+  <select id="selectProInstIdByID" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT PROC_INST_ID_ FROM act_ru_task WHERE ID_= #{id,jdbcType=VARCHAR}
+  </select>
+
+  <!--根据任务编号查询已完成任务历史记录-->
+  <select id="selectFinishHistoryByTask" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT b.ID_ FROM act_hi_actinst b RIGHT JOIN
+    (SELECT START_TIME_,PROC_INST_ID_ FROM act_hi_actinst WHERE TASK_ID_=#{taskId,jdbcType=VARCHAR})a ON b.PROC_INST_ID_=a.PROC_INST_ID_
+    WHERE b.ACT_NAME_='end'
+  </select>
+
+  <!--根据任务编号查询未完成任务的历史记录-->
+  <select id="selectNotFinishHistoryByTask" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT b.ACT_ID_ FROM act_hi_actinst b RIGHT JOIN
+    (SELECT START_TIME_,PROC_INST_ID_ FROM act_hi_actinst WHERE TASK_ID_=#{taskId,jdbcType=VARCHAR})a ON b.PROC_INST_ID_=a.PROC_INST_ID_
+    WHERE b.START_TIME_ &lt; a.START_TIME_ AND b.ACT_NAME_ !='start' ORDER BY b.START_TIME_ DESC
+  </select>
+</mapper>

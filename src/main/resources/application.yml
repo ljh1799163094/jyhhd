@@ -1,0 +1,56 @@
+server:
+  port: 8081
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .jsp
+    encoding: utf-8
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  redis:
+    jedis:
+      pool:
+        max-wait: -1
+        max-active: 8
+        min-idle: 0
+        max-idle: 8
+    timeout: 30000
+  rabbitmq:
+    addresses: 127.0.0.1
+    port: 5672
+    host: 127.0.0.1
+    username: root
+    password: root
+  datasource:
+     # url: jdbc:mysql://192.168.0.104:3306/oracletest?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+     # username: root
+     # password: root
+     # driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/oracletest?useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+  activiti:
+    database-schema-update: true  #每次应用启动不检查Activiti数据表是否存在及版本号是否匹配，提升应用启动速度
+    history-level: full #保存历史数据级别设置为full最高级别，便于历史数据的追溯
+    check-process-definitions: false
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.example.jyhhd.entity
+#    #    配置erp数据源
+#      jdbc-url: jdbc:oracle:thin:@192.168.0.*:1521:*
+#      username: ####
+#      password: ####
+#      driver-class-name: oracle.jdbc.driver.OracleDriver
+#    #      配置OA数据源
+#    oadb:
+#      jdbc-url: jdbc:oracle:thin:@192.168.0.*:1521:*
+#      username: ####
+#      password: ####
+#      driver-class-name: oracle.jdbc.driver.OracleDriver
+
+openoffice:
+  address: 127.0.0.1
+  port: 8100
