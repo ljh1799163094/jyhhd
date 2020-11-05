@@ -22,7 +22,7 @@
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
         // 不带参数的写法
-        websocket = new WebSocket("ws://127.0.0.1:8081/webSocket/12/小明");
+        websocket = new WebSocket("ws://192.168.1.24:8080/jeecg-boot/websocketRealtime/crew");
 
     } else {
         alert('当前浏览器 Not support websocket')

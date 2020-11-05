@@ -1,42 +1,37 @@
 package com.example.jyhhd.util;
 
-import com.example.jyhhd.entity.Table1;
 import com.example.jyhhd.entity.Table2;
-import com.example.jyhhd.entity.User;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.*;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.xwpf.usermodel.*;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 public class Table2_Test {
 
-    static String fileName="G:\\继电保护投入率报表(2020年08月）.doc";
+    static String fileName="G:\\继电保护投入率报表(2020年08月）.doc";//
 
     public static void main(String[] args) throws IOException {
-        testWord();
+        FileInputStream in = new FileInputStream(fileName);//载入文档
+        testWord(in,"");
     }
 
-    public static void testWord(){
+    public static List<Table2> testWord(FileInputStream in,String userId){
+        List<Table2> table2s = new ArrayList<>();
         try{
-            FileInputStream in = new FileInputStream(fileName);//载入文档
+            //FileInputStream in = new FileInputStream(fileName);//载入文档
             POIFSFileSystem pfs = new POIFSFileSystem(in);
             HWPFDocument hwpf = new HWPFDocument(pfs);
             Range range = hwpf.getRange();//得到文档的读取范围
             TableIterator it = new TableIterator(range);
-
             //迭代文档中的表格
             while (it.hasNext()) {
-                List<Table2> table2s = new ArrayList<>();
                 Table tb = it.next();
 
                 //迭代行，默认从0开始
@@ -57,6 +52,8 @@ public class Table2_Test {
                             value=value.trim();
                         }
                         if(j==0){
+                            String id = UUID.randomUUID().toString().replace("-", "");
+                            table2.setId(id);
                             table2.setXh(value);
                         }else if(j==1){
                             table2.setLineName(value);
@@ -78,7 +75,8 @@ public class Table2_Test {
                         }else if(j==5){
                             table2.setNode(value);
                         }
-
+                        table2.setCreateat(new Date());
+                        table2.setCreateby(userId);
                     }
                     table2s.add(table2);
                 }
@@ -92,6 +90,7 @@ public class Table2_Test {
         }catch(Exception e){
             e.printStackTrace();
         }
+        return table2s;
     }
 
 

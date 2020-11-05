@@ -2,6 +2,9 @@ package com.example.jyhhd.controller;
 
 import com.example.jyhhd.Result;
 import com.example.jyhhd.service.TestService;
+import com.example.jyhhd.service.impl.pms.Test;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,9 @@ public class TestController {
 
     @Autowired
     private TestService testService;
+
+    @Autowired
+    private Test test;
 
     @RequestMapping("/uploadFile")
     @ResponseBody
@@ -100,4 +106,9 @@ public class TestController {
 
     }
 
+    @GetMapping("/getCzp")
+    @ApiOperation("获取操作票")
+    public void getCzp(){
+        test.getCzp();
+    }
 }

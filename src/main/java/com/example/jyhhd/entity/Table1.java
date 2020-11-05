@@ -24,5 +24,7 @@ public class Table1 {
     private Double co2;
     private String jl;//结论
     private String bz;//备注
+    private String createby;//创建人
+    private Date createat;//创建时间
 
 }

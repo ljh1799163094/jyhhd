@@ -1,6 +1,22 @@
 server:
-  port: 8081
+  port: 8085
+  servlet:
+    context-path: /xm
 spring:
+  mail:
+    host: smtp.163.com
+    port: 25
+    username: ljh1799163094@163.com
+    #授权码
+    password: QNONXVYOHFWIKFDS
+    properties:
+      mail:
+        smtp:
+          # 如果是用 SSL 方式，需要配置如下属性
+          starttls:
+            enable: true
+            required: true
+
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .jsp

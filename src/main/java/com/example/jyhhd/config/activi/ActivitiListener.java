@@ -76,4 +76,5 @@ public class ActivitiListener implements TaskListener, ExecutionListener {
            // delegateTask.setVariable("userId", list);
         }
     }
+
 }

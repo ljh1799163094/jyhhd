@@ -4,20 +4,42 @@
 
   <insert id="insertSubstationEquipment" parameterType="java.util.List">
     INSERT INTO substationEquipment_chromatographic (ID,ELC_NAME,VOLTAGE_KIND,CY_DATE,SY_DATE,CH4,
-    C2H6,C2H4,C2H2,ZT,H2,CO,CO2,CONCLUSION,NOTE) VALUES
+    C2H6,C2H4,C2H2,ZT,H2,CO,CO2,CONCLUSION,NOTE,CREATE_BY,CREATE_AT) VALUES
     <foreach collection="list" item="item" index="index" separator=",">
       (
       #{item.id},
-      #{item.fundName},
-      #{item.fundCode},
-      #{item.dateX},
-      #{item.dataY},
-      #{item.createBy},
-      #{item.createDate},
-      #{item.updateBy},
-      #{item.updateDate},
-      #{item.remarks},
-      #{item.delFlag}
+      #{item.sbName},
+      #{item.voltageKind},
+      #{item.cyrq},
+      #{item.syrq},
+      #{item.ch4},
+      #{item.c2h6},
+      #{item.c2h4},
+      #{item.c2h2},
+      #{item.zj},
+      #{item.h2},
+      #{item.co},
+      #{item.co2},
+      #{item.jl},
+      #{item.bz},
+      #{item.createby},
+      #{item.createat}
+      )
+    </foreach>
+  </insert>
+
+  <insert id="insertRelayProtectionInputrate" parameterType="java.util.List">
+    INSERT INTO relayprotection_inputrate (ID,XH,LINENAME,JDBHSJTS,SJTRTS,TRL,NODE,CREATE_AT,CREATE_BY) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id},
+       #{item.xh},
+       #{item.lineName},
+       #{item.jdbhsjts},
+       #{item.sjtrts},
+       #{item.trl},
+       #{item.node},
+       #{item.createat},
+       #{item.createby}
       )
     </foreach>
   </insert>

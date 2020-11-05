@@ -4,10 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import com.example.jyhhd.entity.Table1;
 import com.example.jyhhd.entity.User;
@@ -32,15 +29,16 @@ public class Table1_Test {
     static String fileName = "G:\\色谱(09)月报表 .docx";
 
     public static void main(String[] args) throws IOException {
-        testWord();
+        FileInputStream in = new FileInputStream(fileName);
+        testWord(in,"");
     }
 
-    public static void testWord(){
-        List<User> list = new ArrayList<>();
+    public static List<Table1> testWord(FileInputStream in,String userId){
+        List<Table1> table1s = new ArrayList<>();
         try{
             //载入文档最好格式为.doc后缀
             //.docx后缀文件可能存在问题，可将.docx后缀文件另存为.doc
-            FileInputStream in = new FileInputStream(fileName);//载入文档
+            //FileInputStream in = new FileInputStream(fileName);//载入文档
             POIFSFileSystem pfs = new POIFSFileSystem(in);
             HWPFDocument hwpf = new HWPFDocument(pfs);
             Range range = hwpf.getRange();//得到文档的读取范围
@@ -48,7 +46,7 @@ public class Table1_Test {
 
             //迭代文档中的表格
             while (it.hasNext()) {
-                List<Table1> table1s = new ArrayList<>();
+
                 Table tb = it.next();
                 //迭代行，默认从0开始
                 for (int i = 2; i < tb.numRows(); i++) {
@@ -70,7 +68,8 @@ public class Table1_Test {
                         }
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
                         if(j==0){
-                            table1.setId(value);
+                            String id=UUID.randomUUID().toString().replace("-","");
+                            table1.setId(id);
                         }else if(j==1){
                             table1.setSbName(value);
                         }else if(j==2){
@@ -140,7 +139,8 @@ public class Table1_Test {
                         }else if(j==14){
                             table1.setBz(value);
                         }
-
+                        table1.setCreateat(new Date());
+                        table1.setCreateby(userId);
                     }
                     table1s.add(table1);
                 }
@@ -154,6 +154,7 @@ public class Table1_Test {
         }catch(Exception e){
             e.printStackTrace();
         }
+        return table1s;
     }
 
     public static void createExecl(ArrayList<User> list) {

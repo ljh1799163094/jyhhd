@@ -263,7 +263,7 @@ public class QRCodeUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        String text = "http://www.baidu.com";  //这里设置自定义网站url
+        String text = "http://aoligei.free.idcfengye.com/1.jpg";  //这里设置自定义网站url
         String logoPath = "G://dog.png";
         String destPath = "d:\\";
         QRCodeUtil.encode(text, logoPath, destPath, true);

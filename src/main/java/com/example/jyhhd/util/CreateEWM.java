@@ -157,11 +157,11 @@ public class CreateEWM {
 }*/
     public static void main(String[] args) throws Exception {
         // 存放在二维码中的内容
-        String text = "李小勺，你咋不理我呢";
-        // 嵌入二维码的图片路径
-        String imgPath = "G:/aa.png";
+        String text = "http://aoligei.free.idcfengye.com/3.jpg";
+        //        // 嵌入二维码的图片路径
+        String imgPath = "G:/1.png";
         // 生成的二维码的路径及名称
-        String destPath = "G:/1.jpg";
+        String destPath = "G:/3.jpg";
         //生成二维码
         encode(text, imgPath, destPath, true);
         // 解析二维码

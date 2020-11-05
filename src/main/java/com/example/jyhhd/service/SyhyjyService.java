@@ -5,5 +5,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface SyhyjyService {
 
-    Result uploadFile(MultipartFile file, Result result);
+    Result uploadFile(MultipartFile file, Result result) throws Exception;
 }
